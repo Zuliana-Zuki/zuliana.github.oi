@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuiz Sains Tingkatan 3 KSSM — 50 Soalan</title>
+<style>
+:root{--navy:#15324b;--blue:#176b87;--pale:#eef6f8;--ink:#203040;--green:#177245;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(135deg,#15324b,#176b87);color:white;padding:30px 18px}
+.wrap{max-width:960px;margin:auto;padding:0 16px}h1{margin:0 0 8px;font-size:clamp(1.6rem,4vw,2.3rem)}header p{margin:0;opacity:.92}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.pill{background:#ffffff20;border:1px solid #ffffff50;padding:5px 10px;border-radius:999px;font-size:.9rem}
+main{padding:22px 0 50px}.notice{background:#fff;border-left:4px solid var(--blue);padding:14px 16px;border-radius:10px;box-shadow:0 2px 8px #122b3b0c;margin-bottom:18px}
+.question{background:white;border:1px solid #e1e8ef;border-radius:14px;padding:18px;margin:14px 0;box-shadow:0 3px 10px #122b3b08}
+.qhead{display:flex;gap:12px;align-items:flex-start}.num{background:var(--pale);color:var(--blue);font-weight:800;min-width:38px;height:34px;border-radius:9px;display:grid;place-items:center}
+.topic{font-size:.78rem;color:#526a7a;text-transform:uppercase;letter-spacing:.06em;font-weight:750}.stem{font-weight:650;margin:2px 0 12px}
+.options{display:grid;gap:8px}.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid #dce5ec;border-radius:10px;padding:10px 12px;cursor:pointer;transition:.15s}.opt:hover{background:#f6fbfc;border-color:#91bdcc}.opt:has(input:checked){background:#eaf6fa;border-color:var(--blue)}input[type=radio]{margin-top:5px;accent-color:var(--blue)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.btn{border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:750;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#e4edf2;color:var(--navy)}.btn:disabled{opacity:.5;cursor:not-allowed}
+#result{display:none;background:white;border-radius:14px;padding:22px;border:1px solid #dce5ec;margin-top:20px}.score{font-size:2rem;font-weight:850;color:var(--navy)}.keyrow{padding:12px 0;border-bottom:1px solid #e7edf1}.keyrow:last-child{border:0}.correct{color:var(--green);font-weight:750}.wrong{color:var(--red);font-weight:750}.explain{color:#536879;margin-top:4px}.tag{font-size:.78rem;border-radius:6px;padding:3px 7px;background:#edf2f6}
+footer{text-align:center;color:#607383;padding:20px;font-size:.9rem}
+@media print{body{background:white}header{background:white;color:black;padding:10px 0}.pill,.actions{display:none}.question{break-inside:avoid;box-shadow:none}#result{display:block!important;box-shadow:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Kuiz Sains Tingkatan 3 KSSM</h1>
+<p>50 soalan objektif • Pelbagai topik • Semakan markah automatik</p>
+<div class="meta"><span class="pill">Tingkatan 3</span><span class="pill">50 markah</span><span class="pill">1 markah setiap soalan</span></div>
+</div></header>
+<main class="wrap">
+<div class="notice"><strong>Arahan:</strong> Pilih satu jawapan bagi setiap soalan. Tekan <em>Hantar Jawapan</em> untuk menyemak markah dan melihat skema jawapan berserta penerangan. Jawapan boleh diubah sebelum penghantaran.</div>
+<form id="quizForm"><div id="questions"></div>
+<div class="actions"><button class="btn primary" type="submit">Hantar Jawapan</button><button class="btn secondary" type="button" id="resetBtn">Cuba Semula</button></div>
+</form>
+<section id="result" aria-live="polite"><h2>Keputusan Kuiz</h2><div id="score" class="score"></div><p id="summary"></p><h3>Skema Jawapan dan Semakan</h3><div id="answerKey"></div></section>
+</main><footer>Latihan ulang kaji Sains Tingkatan 3 • Bahan latihan kendiri</footer>
+<script>
+const questions = [
+["Rangsangan dan gerak balas","Apakah fungsi utama sistem saraf manusia?","Mencerna makanan","Mengesan rangsangan dan menyelaras gerak balas","Mengangkut oksigen sahaja","Menghasilkan enzim pencernaan","B","Sistem saraf menerima maklumat rangsangan, memprosesnya dan menyelaras gerak balas."],
+["Rangsangan dan gerak balas","Bahagian mata yang mengawal jumlah cahaya masuk ialah…","Retina","Kanta mata","Iris","Saraf optik","C","Iris mengubah saiz anak mata untuk mengawal jumlah cahaya yang memasuki mata."],
+["Rangsangan dan gerak balas","Apakah gerak balas yang berlaku apabila tangan tersentuh objek panas?","Tangan ditarik dengan cepat","Darah berhenti mengalir","Anak mata mengecil","Pencernaan bertambah cepat","A","Tindakan refleks menarik tangan berlaku dengan cepat untuk mengurangkan kecederaan."],
+["Rangsangan dan gerak balas","Hormon insulin dihasilkan oleh…","Kelenjar tiroid","Pankreas","Kelenjar adrenal","Pituitari","B","Pankreas merembeskan insulin yang membantu mengawal aras glukosa darah."],
+["Rangsangan dan gerak balas","Antara berikut, yang manakah contoh gerak balas tumbuhan terhadap cahaya?","Hidrotropisme","Geotropisme","Fototropisme","Tigmotropisme","C","Fototropisme ialah gerak balas pertumbuhan tumbuhan terhadap arah cahaya."],
+["Respirasi","Di manakah pertukaran gas berlaku dalam peparu manusia?","Trakea","Bronkus","Alveolus","Diafragma","C","Alveolus berdinding nipis dan dikelilingi kapilari darah, sesuai untuk pertukaran gas."],
+["Respirasi","Gas yang digunakan oleh sel semasa respirasi sel ialah…","Nitrogen","Oksigen","Hidrogen","Helium","B","Respirasi aerob menggunakan oksigen untuk membebaskan tenaga daripada glukosa."],
+["Respirasi","Apakah fungsi diafragma semasa menarik nafas?","Mengendur dan melengkung ke atas","Mengecut dan bergerak ke bawah","Menutup trakea sepenuhnya","Menghalang dada mengembang","B","Diafragma mengecut dan mendatar, meningkatkan isi padu rongga toraks."],
+["Respirasi","Antara berikut, yang manakah boleh menjejaskan kesihatan sistem respirasi?","Merokok","Minum air kosong","Tidur mencukupi","Bersenam secara sederhana","A","Asap rokok mengandungi bahan berbahaya yang merosakkan salur pernafasan dan peparu."],
+["Respirasi","Apakah hasil utama respirasi aerob dalam sel?","Glukosa dan oksigen","Tenaga, karbon dioksida dan air","Nitrogen dan air sahaja","Asid laktik sahaja","B","Respirasi aerob menguraikan glukosa dengan oksigen untuk membebaskan tenaga serta menghasilkan karbon dioksida dan air."],
+["Pengangkutan","Komponen darah yang mengangkut oksigen ialah…","Platlet","Sel darah putih","Sel darah merah","Plasma sahaja","C","Hemoglobin dalam sel darah merah mengikat dan mengangkut oksigen."],
+["Pengangkutan","Apakah fungsi utama platlet?","Melawan patogen secara langsung","Membantu pembekuan darah","Mengangkut hormon sahaja","Membawa karbon dioksida sahaja","B","Platlet membantu membentuk darah beku bagi mengurangkan kehilangan darah."],
+["Pengangkutan","Salur darah yang membawa darah keluar dari jantung ialah…","Vena","Kapilari","Arteri","Venul","C","Arteri membawa darah menjauhi jantung; vena membawa darah kembali ke jantung."],
+["Pengangkutan","Apakah fungsi injap dalam jantung?","Mempercepat penghasilan sel darah","Menghalang aliran balik darah","Menukar oksigen menjadi karbon dioksida","Menghasilkan impuls saraf","B","Injap memastikan darah mengalir dalam satu arah melalui jantung."],
+["Pengangkutan","Bahagian darah yang kebanyakannya terdiri daripada air dan mengangkut bahan terlarut ialah…","Plasma","Platlet","Sel darah merah","Hemoglobin","A","Plasma ialah bahagian cecair darah yang mengangkut nutrien, hormon dan bahan buangan."],
+["Kereaktifan logam","Apakah yang dimaksudkan dengan kereaktifan logam?","Keupayaan mengalirkan arus sahaja","Kecenderungan logam bertindak balas secara kimia","Kekerasan logam sahaja","Keupayaan melarut dalam air sahaja","B","Kereaktifan menerangkan kecenderungan sesuatu logam menjalani tindak balas kimia."],
+["Kereaktifan logam","Antara logam berikut, yang manakah paling reaktif?","Kuprum","Perak","Kalium","Emas","C","Kalium berada tinggi dalam siri kereaktifan dan bertindak balas sangat cergas."],
+["Kereaktifan logam","Apakah yang biasanya diperhatikan apabila magnesium dibakar dalam oksigen?","Menghasilkan nyalaan putih terang","Menghasilkan gas hijau","Tidak berlaku perubahan","Terbentuk mendakan biru","A","Magnesium terbakar dengan nyalaan putih terang dan membentuk magnesium oksida putih."],
+["Kereaktifan logam","Mengapakah natrium disimpan di dalam minyak parafin?","Supaya lebih mudah dipotong","Untuk mengelakkannya bertindak balas dengan udara dan air","Untuk menjadikannya lebih berat","Untuk mempercepat pengaratan","B","Minyak menghalang natrium daripada bersentuhan dengan oksigen dan wap air."],
+["Kereaktifan logam","Apakah nama proses apabila logam bertindak balas dengan oksigen lalu membentuk oksida?","Peneutralan","Pengoksidaan","Penyulingan","Pempolimeran","B","Pengoksidaan melibatkan tindak balas dengan oksigen atau kehilangan elektron."],
+["Termokimia","Tindak balas eksotermik ialah tindak balas yang…","Menyerap haba daripada persekitaran","Membebaskan haba ke persekitaran","Tidak melibatkan perubahan tenaga","Hanya berlaku pada suhu sifar","B","Tindak balas eksotermik memindahkan tenaga haba ke persekitaran."],
+["Termokimia","Apakah perubahan suhu persekitaran yang lazim berlaku dalam tindak balas endotermik?","Suhu meningkat","Suhu menurun","Suhu sentiasa kekal","Suhu menjadi sifar mutlak","B","Tindak balas endotermik menyerap haba daripada persekitaran, lalu persekitaran biasanya menjadi lebih sejuk."],
+["Termokimia","Pembakaran bahan api merupakan contoh tindak balas…","Endotermik","Eksotermik","Fotosintesis","Peneutralan sahaja","B","Pembakaran membebaskan tenaga haba ke persekitaran."],
+["Termokimia","Dalam eksperimen perubahan haba, alat yang sesuai untuk mengukur suhu ialah…","Bikar sahaja","Termometer","Neraca elektronik","Jam randik sahaja","B","Termometer digunakan untuk mengukur suhu awal dan suhu akhir."],
+["Termokimia","Apabila ammonium nitrat dilarutkan dalam air dan suhu campuran menurun, proses itu…","Eksotermik","Endotermik","Pembakaran","Pengaratan","B","Penurunan suhu menunjukkan haba diserap daripada persekitaran."],
+["Elektrik dan kemagnetan","Unit SI bagi arus elektrik ialah…","Volt","Ohm","Ampere","Watt","C","Arus elektrik diukur dalam ampere (A)."],
+["Elektrik dan kemagnetan","Apakah alat yang digunakan untuk mengukur beza keupayaan?","Ammeter","Voltmeter","Termometer","Dinamometer","B","Voltmeter mengukur beza keupayaan antara dua titik dalam litar."],
+["Elektrik dan kemagnetan","Dalam litar bersiri, arus elektrik pada setiap komponen adalah…","Berbeza-beza tanpa hubungan","Sama","Sentiasa sifar","Bergantung pada warna wayar","B","Arus yang sama melalui setiap komponen dalam satu laluan bersiri."],
+["Elektrik dan kemagnetan","Apakah yang berlaku kepada jumlah rintangan apabila dua perintang disambung secara bersiri?","Jumlah rintangan berkurang","Jumlah rintangan ialah hasil tambah rintangan","Jumlah rintangan sentiasa sifar","Rintangan tidak boleh diukur","B","Rintangan setara litar bersiri ialah jumlah semua rintangan."],
+["Elektrik dan kemagnetan","Apakah yang terhasil apabila arus mengalir melalui gegelung dawai yang dililit pada teras besi lembut?","Elektromagnet","Sel suria","Penebat sempurna","Termistor sahaja","A","Arus dalam gegelung menghasilkan medan magnet; teras besi lembut menguatkan kesan itu."],
+["Tenaga dan kuasa","Unit SI bagi kuasa ialah…","Joule","Newton","Watt","Pascal","C","Kuasa diukur dalam watt dan menunjukkan kadar pemindahan atau penggunaan tenaga."],
+["Tenaga dan kuasa","Sebuah alat menggunakan tenaga 600 J dalam 20 s. Berapakah kuasanya?","12 W","30 W","120 W","580 W","B","Kuasa = tenaga ÷ masa = 600 J ÷ 20 s = 30 W."],
+["Tenaga dan kuasa","Tenaga kinetik sesuatu objek bergantung pada…","Warna dan bentuk sahaja","Jisim dan laju objek","Suhu bilik sahaja","Ketinggian awan","B","Tenaga kinetik meningkat dengan jisim dan kuasa dua laju objek."],
+["Tenaga dan kuasa","Apakah sumber tenaga boleh baharu?","Arang batu","Petroleum","Tenaga suria","Gas asli","C","Tenaga suria diperoleh daripada cahaya Matahari dan boleh diperbaharui secara semula jadi."],
+["Tenaga dan kuasa","Apakah perubahan tenaga utama dalam mentol menyala?","Elektrik kepada cahaya dan haba","Haba kepada kimia sahaja","Bunyi kepada elektrik","Kimia kepada nuklear","A","Mentol menukarkan tenaga elektrik kepada cahaya dan sebahagian tenaga haba."],
+["Radioaktiviti","Apakah maksud radioaktiviti?","Pelepasan bunyi daripada logam","Pereputan nukleus tidak stabil yang memancarkan sinaran","Pengaliran arus dalam wayar","Pembentukan bayang-bayang","B","Radioaktiviti berlaku apabila nukleus atom tidak stabil mereput dan memancarkan sinaran."],
+["Radioaktiviti","Antara berikut, yang manakah merupakan kegunaan radioisotop dalam bidang perubatan?","Menentukan warna pakaian","Mendiagnosis atau merawat penyakit tertentu","Menghasilkan air suling","Mengukur panjang meja","B","Radioisotop digunakan dalam pengimejan perubatan dan rawatan tertentu di bawah kawalan keselamatan."],
+["Radioaktiviti","Sinaran manakah mempunyai kuasa penembusan paling tinggi antara alfa, beta dan gama?","Alfa","Beta","Gama","Ketiga-tiganya sama","C","Sinar gama mempunyai kuasa penembusan paling tinggi antara tiga jenis sinaran tersebut."],
+["Cuaca dan angkasa lepas","Apakah punca utama kejadian siang dan malam di Bumi?","Bumi mengelilingi Matahari","Bumi berputar pada paksinya","Bulan mengelilingi Bumi","Matahari mengelilingi Bumi","B","Putaran Bumi pada paksinya menyebabkan bahagian yang menghadap Matahari mengalami siang."],
+["Cuaca dan angkasa lepas","Apakah yang menyebabkan berlakunya musim di Bumi?","Jarak Bumi daripada Matahari sahaja","Kecondongan paksi Bumi ketika mengelilingi Matahari","Putaran Bulan","Perubahan saiz Matahari setiap bulan","B","Kecondongan paksi Bumi dan peredaran mengelilingi Matahari menyebabkan taburan cahaya berubah mengikut musim."],
+["Cuaca dan angkasa lepas","Apakah alat yang digunakan untuk mengukur tekanan atmosfera?","Higrometer","Barometer","Anemometer","Tolok hujan","B","Barometer digunakan untuk mengukur tekanan atmosfera."],
+["Cuaca dan angkasa lepas","Apakah nama lapisan atmosfera tempat kebanyakan fenomena cuaca berlaku?","Troposfera","Stratosfera","Mesosfera","Termosfera","A","Awan, hujan dan kebanyakan fenomena cuaca berlaku di troposfera."],
+["Teknologi hijau","Apakah tujuan utama teknologi hijau?","Meningkatkan penggunaan sumber tanpa had","Mengurangkan kesan negatif aktiviti manusia terhadap alam sekitar","Menghapuskan semua teknologi moden","Menggalakkan pembaziran tenaga","B","Teknologi hijau bertujuan mengurangkan pencemaran dan penggunaan sumber serta menyokong kelestarian."],
+["Teknologi hijau","Amalan manakah paling membantu mengurangkan sisa pepejal?","Menggunakan barang sekali guna setiap hari","Mengasingkan dan mengitar semula bahan yang sesuai","Membakar semua sampah terbuka","Membuang bateri ke sungai","B","Pengasingan dan kitar semula mengurangkan jumlah sisa yang dihantar ke tapak pelupusan."],
+["Teknologi hijau","Apakah maksud jejak karbon?","Jumlah tapak kaki seseorang","Jumlah pelepasan gas rumah hijau yang dikaitkan dengan aktiviti atau produk","Jumlah air dalam sungai","Ukuran kelajuan angin","B","Jejak karbon menganggarkan pelepasan gas rumah hijau secara langsung dan tidak langsung."],
+["Teknologi hijau","Antara berikut, yang manakah contoh pengangkutan lebih lestari?","Memandu kereta bersendirian untuk jarak dekat setiap masa","Berjalan kaki atau berbasikal bagi perjalanan dekat","Membiarkan enjin hidup ketika berhenti lama","Menggunakan kenderaan dengan muatan seorang sahaja tanpa keperluan","B","Berjalan kaki dan berbasikal tidak menggunakan bahan api semasa perjalanan dan mengurangkan pelepasan."],
+["Teknologi hijau","Mengapakah penggunaan lampu LED dapat menjimatkan tenaga?","LED menukar semua tenaga kepada bunyi","LED biasanya menggunakan tenaga lebih rendah untuk cahaya yang setara","LED memerlukan pembakaran bahan api","LED meningkatkan kehilangan haba dengan sengaja","B","LED lazimnya lebih cekap tenaga berbanding mentol pijar untuk keluaran cahaya yang setara."],
+["Kesihatan dan penyakit","Penyakit berjangkit boleh merebak melalui…","Patogen tertentu","Keturunan sahaja dalam semua kes","Kekurangan cahaya sahaja","Penuaan semula jadi sahaja","A","Penyakit berjangkit disebabkan patogen dan boleh merebak melalui laluan seperti udara, sentuhan atau vektor."],
+["Kesihatan dan penyakit","Antibiotik digunakan untuk merawat jangkitan yang disebabkan oleh…","Bakteria tertentu","Semua virus","Semua alahan","Semua kecederaan fizikal","A","Antibiotik bertindak terhadap bakteria tertentu dan tidak merawat jangkitan virus."],
+["Kesihatan dan penyakit","Apakah fungsi vaksin?","Menyebabkan semua penyakit berjangkit serta-merta","Merangsang sistem imun mengenali patogen tertentu","Menggantikan semua sel darah merah","Membunuh semua mikroorganisma dalam badan tanpa pilih","B","Vaksin melatih sistem imun membina perlindungan terhadap patogen sasaran."],
+["Kesihatan dan penyakit","Amalan manakah membantu mengurangkan penularan penyakit melalui tangan?","Tidak mencuci tangan","Mencuci tangan dengan sabun dan air","Berkongsi tuala yang kotor","Menyentuh muka dengan tangan tidak bersih","B","Mencuci tangan menyingkirkan kotoran dan mengurangkan pemindahan patogen."]
+];
+const letters=["A","B","C","D"];
+const form=document.getElementById("quizForm"), qWrap=document.getElementById("questions");
+questions.forEach((q,i)=>{
+ const [topic,stem,...rest]=q, opts=rest.slice(0,4), key=rest[4], explanation=rest[5];
+ const card=document.createElement("section"); card.className="question"; card.id="q"+(i+1);
+ card.innerHTML=`<div class="qhead"><div class="num">${i+1}</div><div style="flex:1"><div class="topic">${topic}</div><div class="stem">${stem}</div></div></div><div class="options">${opts.map((o,j)=>`<label class="opt"><input type="radio" name="q${i}" value="${letters[j]}"><span><strong>${letters[j]}.</strong> ${o}</span></label>`).join("")}</div>`;
+ qWrap.appendChild(card);
+});
+form.addEventListener("submit",e=>{
+ e.preventDefault();
+ let score=0,answered=0; const out=document.getElementById("answerKey"); out.innerHTML="";
+ questions.forEach((q,i)=>{
+  const [topic,stem,...rest]=q, opts=rest.slice(0,4), key=rest[4], explanation=rest[5];
+  const chosen=form.querySelector(`input[name="q${i}"]:checked`);
+  if(chosen) answered++;
+  const ok=chosen && chosen.value===key; if(ok)score++;
+  const row=document.createElement("div"); row.className="keyrow";
+  row.innerHTML=`<div><strong>${i+1}. ${stem}</strong> <span class="${ok?'correct':'wrong'}">${chosen?(ok?'Betul':'Salah'):'Tidak dijawab'}</span></div><div>Jawapan anda: ${chosen?chosen.value+'. '+opts[letters.indexOf(chosen.value)]:'—'}</div><div><strong>Skema:</strong> ${key}. ${opts[letters.indexOf(key)]}</div><div class="explain">${explanation}</div>`;
+  out.appendChild(row);
+ });
+ document.getElementById("score").textContent=`${score} / ${questions.length} markah (${Math.round(score/questions.length*100)}%)`;
+ document.getElementById("summary").textContent=`Anda menjawab ${answered} daripada ${questions.length} soalan. ${score>=40?'Cemerlang! Teruskan usaha.':score>=30?'Baik! Semak semula topik yang kurang dikuasai.':'Teruskan latihan dan baca penerangan bagi setiap jawapan.'}`;
+ document.getElementById("result").style.display="block";
+ document.querySelectorAll('input[type=radio]').forEach(x=>x.disabled=true);
+ form.querySelector('button[type=submit]').disabled=true;
+ document.getElementById("result").scrollIntoView({behavior:"smooth",block:"start"});
+});
+document.getElementById("resetBtn").addEventListener("click",()=>{
+ form.reset();document.querySelectorAll('input[type=radio]').forEach(x=>x.disabled=false);
+ form.querySelector('button[type=submit]').disabled=false;document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+});
+</script>
+</body></html>
